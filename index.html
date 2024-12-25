@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Turn anything into viral brainrot videos! Transform your boring PDFs and docs into engaging Gen Z content 🚀">
+    <meta name="keywords" content="brainrot, viral videos, gen z content, pdf to video, ai video generator">
+    <meta name="author" content="Brainrot Anything">
+    <meta property="og:title" content="Brainrot Anything - Turn Boring Content into Viral Videos">
+    <meta property="og:description" content="Transform your PDFs and docs into engaging Gen Z content using AI ✨">
+    <meta property="og:image" content="./logo.png">
+    <meta property="og:url" content="https://brainrot-anything.com">
+    <link rel="icon" type="image/png" href="./logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Brainrot Anything - Turn Boring Content into Viral Videos ✨</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #FF3366, #FF6B6B, #4ECDC4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .upload-section {
+            background: #111;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #222;
+            transition: all 0.3s ease;
+        }
+
+        .upload-section:hover {
+            border-color: #FF3366;
+        }
+
+        .drop-zone {
+            border: 2px dashed #333;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .drop-zone:hover {
+            border-color: #FF3366;
+            background: rgba(255, 51, 102, 0.1);
+        }
+
+        .upload-btn {
+            background: linear-gradient(90deg, #FF3366, #FF6B6B);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 51, 102, 0.2);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .video-card {
+            background: #111;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-card video {
+            width: 100%;
+            aspect-ratio: 9/16;
+            object-fit: cover;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #FF3366;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="relative bg-gray-900 text-white min-h-screen">
+    <div class="container mx-auto px-4 py-8 flex flex-col justify-center items-center">
+        <section class="hero text-center mb-6">
+            <h1 class="text-5xl font-bold mb-6"><span class="gradient-text">Brainrotify</span> Your Content
+                🧠✨</h1>
+            <p class="text-2xl text-gray-300 max-w-3xl mx-auto">Transform boring docs into viral Gen Z
+                content in
+                seconds</p>
+        </section>
+        <div class="max-w-7xl mx-auto max-h-3xl">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <!-- Upload Section -->
+                <div class="lg:col-span-5 lg:col-start-1 lg:col-end-6 pt-10 flex flex-col justify-center items-center">
+                    <!-- Marquee Section -->
+                    <div class="lg:col-span-5 lg:col-start-1 lg:col-end-6">
+                        <div class="marquee-container bg-gray-800/50 backdrop-blur-sm rounded-xl p-3 shadow-lg">
+                            <marquee behavior="scroll" direction="left" scrollamount="12"
+                                class="text-pink-500 font-bold text-lg">
+                                🚀 Transform your boring docs into viral Gen Z content! ✨ Start uploading now! 🎵 |
+                                💅 Slay your presentations with Gen Z vibes! 🔥 |
+                                🤪 Make your content go absolutely brainrot! 💫 |
+                                ⭐️ Turn basic docs into iconic masterpieces! ✌️ |
+                                🎭 Give your content that chronically online energy! 💁‍♀️
+                            </marquee>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 shadow-lg flex flex-col justify-center items-center mt-10">
+                        <!-- Toggle Buttons -->
+                        <div class="flex gap-4 justify-center items-center bg-gray-700 rounded-xl p-2 border-2 border-gray-600 backdrop-blur-lg lg:w-[75%]"">
+                            <button 
+                                id="fileToggle" 
+                                aria-pressed="true"
+                                class="flex-1 py-3 px-6 rounded-xl font-bold transition-all transform hover:scale-105 bg-gradient-to-r from-pink-500 to-purple-600 text-white"
+                            >
+                                File Upload
+                            </button>
+                            <button 
+                                id="textToggle"
+                                aria-pressed="false" 
+                                class="flex-1 py-3 px-6 rounded-xl font-bold transition-all transform hover:scale-105 bg-gray-700 text-gray-300"
+                            >
+                                Text Input
+                            </button>
+                        </div>
+                        <!-- File Upload Section -->
+                        <div id="fileSection" class="upload-section bg-white/10 backdrop-blur-sm rounded-xl p-8 shadow-lg">
+                            <form id="uploadForm" class="space-y-6">
+                                <div class="drop-zone border-3 border-dashed border-gray-600 hover:border-pink-500 rounded-xl transition-all cursor-pointer hover:bg-gray-800/30"
+                                    id="dropZone">
+                                    <div class="p-5 text-center">
+                                        <img src="https://img.icons8.com/nolan/64/upload-2.png" alt="Upload"
+                                            class="mx-auto mb-6 w-16 h-16">
+                                        <p class="text-xl mb-3">Drop your files here or <span
+                                                class="text-pink-500 font-semibold">browse</span></p>
+                                        <p class="text-gray-400">Supports PDF, DOC, Images (Max 8MB)</p>
+                                        <input type="file" id="fileInput" accept=".png, .jpeg, .jpg, .doc, .docx, .pdf"
+                                            class="hidden">
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="loader" id="loader"></div>
+                        </div>
+
+                        <!-- Text Input Section -->
+                        <div id="textSection" class="upload-section bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 shadow-lg hidden lg:w-[450px]">
+                            <form id="textForm" class="space-y-6">
+                                <div class="relative">
+                                    <textarea 
+                                        id="textInput"
+                                        class="w-full h-48 bg-gray-900 text-white rounded-xl p-4 border-2 border-gray-700 focus:border-pink-500 focus:outline-none resize-none"
+                                        placeholder="Enter your text here..."
+                                        maxlength="1000"
+                                    ></textarea>
+                                    <div class="absolute bottom-2 right-2 text-sm text-gray-400">
+                                        <span id="charCount">0</span>/1000
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="loader" id="textLoader"></div>
+                        </div>
+
+                        <!-- Common Create Magic Button -->
+                        <button id="createMagicBtn"
+                            class="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-xl transition-all transform hover:scale-105 hover:shadow-xl">
+                            CREATE BRAINROTIFY ✨
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Arrow Animation -->
+                <div class="lg:col-span-3 flex justify-center items-center">
+                    <div class="icon-parent rotate-90 lg:rotate-0">
+                        <span class="icon-Container scale-150">
+                            <svg width="48" height="57" viewBox="0 0 16 19" fill="#111"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="1.61321" cy="1.61321" r="1.5" fill="white">
+                                    <animate attributeName="opacity" values="1;0.3;1" dur="2s"
+                                        repeatCount="indefinite" />
+                                </circle>
+                                <circle cx="5.73583" cy="1.61321" r="1.5" fill="white">
+                                    <animate attributeName="opacity" values="1;0.3;1" dur="2s" begin="0.2s"
+                                        repeatCount="indefinite" />
+                                </circle>
+                                <circle cx="5.73583" cy="5.5566" r="1.5" fill="white">
+                                    <animate attributeName="opacity" values="1;0.3;1" dur="2s" begin="0.4s"
+                                        repeatCount="indefinite" />
+                                </circle>
+                                <circle cx="9.85851" cy="5.5566" r="1.5" fill="white">
+                                    <animate attributeName="opacity" values="1;0.3;1" dur="2s" begin="0.6s"
+                                        repeatCount="indefinite" />
+                                </circle>
+                                <circle cx="9.85851" cy="9.5" r="1.5" fill="white">
+                                    <animate attributeName="opacity" values="1;0.3;1" dur="2s" begin="0.8s"
+                                        repeatCount="indefinite" />
+                                </circle>
+                                <circle cx="13.9811" cy="9.5" r="1.5" fill="white">
+                                    <animate attributeName="opacity" values="1;0.3;1" dur="2s" begin="1s"
+                                        repeatCount="indefinite" />
+                                </circle>
+                                <circle cx="5.73583" cy="13.4434" r="1.5" fill="white">
+                                    <animate attributeName="opacity" values="1;0.3;1" dur="2s" begin="1.2s"
+                                        repeatCount="indefinite" />
+                                </circle>
+                                <circle cx="9.85851" cy="13.4434" r="1.5" fill="white">
+                                    <animate attributeName="opacity" values="1;0.3;1" dur="2s" begin="1.4s"
+                                        repeatCount="indefinite" />
+                                </circle>
+                                <circle cx="1.61321" cy="17.3868" r="1.5" fill="white">
+                                    <animate attributeName="opacity" values="1;0.3;1" dur="2s" begin="1.6s"
+                                        repeatCount="indefinite" />
+                                </circle>
+                                <circle cx="5.73583" cy="17.3868" r="1.5" fill="white">
+                                    <animate attributeName="opacity" values="1;0.3;1" dur="2s" begin="1.8s"
+                                        repeatCount="indefinite" />
+                                </circle>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Video Preview Section -->
+                <div class="lg:col-span-3 flex flex-col justify-center items-center lg:mt-16">
+                    <div class="video-grid">
+                        <div class="video-card bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg">
+                            <!-- Generated Video Container (initially hidden) -->
+                            <div id="generatedVideoContainer" class="hidden">
+                                <p class="p-4 m-0 text-gray-300 text-base font-medium border-b border-gray-700">Your
+                                    Generated Video:</p>
+                                <video id="videoPlayer" class="w-full aspect-[9/16] object-cover">
+                                    <p class="text-gray-400">Your browser does not support the video tag.</p>
+                                </video>
+                                <div class="p-4 grid grid-cols-4 gap-4">
+                                    <!-- Video Controls with Icons -->
+                                    <button id="playPauseBtn" 
+                                        class="bg-gray-800 hover:bg-gray-700 text-white rounded-xl transition-all transform hover:scale-105 hover:shadow-xl p-3 flex items-center justify-center">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                    <button id="muteBtn" 
+                                        class="bg-gray-800 hover:bg-gray-700 text-white rounded-xl transition-all transform hover:scale-105 hover:shadow-xl p-3 flex items-center justify-center">
+                                        <i class="fas fa-volume-up"></i>
+                                    </button>
+                                    <a id="downloadBtn" href="#" download 
+                                        class="bg-gray-800 hover:bg-gray-700 text-white rounded-xl transition-all transform hover:scale-105 hover:shadow-xl p-3 flex items-center justify-center">
+                                        <i class="fas fa-download"></i>
+                                    </a>
+                                    <button id="createAgainBtn" 
+                                        class="bg-gray-800 hover:bg-gray-700 text-white rounded-xl transition-all transform hover:scale-105 hover:shadow-xl p-3 flex items-center justify-center">
+                                        <i class="fas fa-redo"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Sample Video Container (initially visible) -->
+                            <div id="sampleVideoContainer">
+                                <p class="p-4 m-0 text-gray-300 text-base font-medium border-b border-gray-700">Sample
+                                    Video:</p>
+                                <video id="sampleVideo" class="w-full aspect-[9/16] object-cover" autoplay muted loop
+                                    playsinline poster="./sample-thumbnail.jpg">
+                                    <source
+                                        src="https://vibevision-bucket.s3.amazonaws.com/673f6f9885fb945764526ea0_brainrot_1734018048511_video.mp4"
+                                        type="video/mp4">
+                                    <p class="text-gray-400">Your browser does not support the video tag.</p>
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QR Code -->
+        <!-- <div class="absolute bottom-6 right-6 z-50 flex flex-col items-center hidden md:flex">
+            <div class="absolute bottom-40 right-6 rounded-xl shadow-2xl transform rotate-90 mb-2">
+                <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+                    type="module"></script>
+                <dotlottie-player src="https://lottie.host/ee27c5c2-4121-418f-b635-bdeac53316d6/995cr6rKaY.lottie"
+                    background="transparent" speed="1" style="width: 100px; height: 100px" loop
+                    autoplay></dotlottie-player>
+            </div>
+            <div class="rounded-xl shadow-2xl flex justify-center items-center">
+                <img src="./qr.png" alt="QR Code" class="w-32 h-32 rounded-lg">
+            </div>
+            <p class="text-gray-300 text-base font-medium mb-2">Scan QR code</p>
+        </div> -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
