@@ -110,23 +110,6 @@
             object-fit: cover;
         }
 
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 3px solid #FF3366;
-            border-radius: 50%;
-            border-top-color: transparent;
-            animation: spin 1s linear infinite;
-            margin: 2rem auto;
-            display: none;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
@@ -136,11 +119,50 @@
                 font-size: 1.2rem;
             }
         }
+
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            stroke-dasharray: 126;
+            stroke-dashoffset: 126;
+        }
+
+        #progressPopup {
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translate(-50%, 100%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body class="relative bg-gray-900 text-white min-h-screen">
+    <div id="progressPopup" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800/90 backdrop-blur-sm rounded-2xl p-4 shadow-2xl hidden z-50 transition-all duration-300 ease-in-out">
+        <div class="flex items-center gap-4">
+            <div class="relative w-12 h-12">
+                <svg class="progress-ring" width="48" height="48">
+                    <circle class="progress-ring__circle" stroke="#FF3366" stroke-width="4" fill="transparent" r="20" cx="24" cy="24"/>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-white">
+                    <span id="progressText">0%</span>
+                </div>
+            </div>
+            <div class="text-white">
+                <p class="font-semibold">Creating your video...</p>
+                <p class="text-sm text-gray-300">This might take a minute</p>
+            </div>
+        </div>
+    </div>
     <div class="container mx-auto px-4 py-8 flex flex-col justify-center items-center">
         <section class="hero text-center mb-6">
             <h1 class="text-5xl font-bold mb-6"><span class="gradient-text">Brainrotify</span> Your Content
@@ -200,7 +222,6 @@
                                     </div>
                                 </div>
                             </form>
-                            <div class="loader" id="loader"></div>
                         </div>
 
                         <!-- Text Input Section -->
@@ -218,7 +239,6 @@
                                     </div>
                                 </div>
                             </form>
-                            <div class="loader" id="textLoader"></div>
                         </div>
 
                         <!-- Common Create Magic Button -->

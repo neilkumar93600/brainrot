@@ -1,7 +1,6 @@
 const dropZone = document.getElementById('dropZone');
 const fileInput = document.getElementById('fileInput');
 const uploadForm = document.getElementById('uploadForm');
-const loader = document.getElementById('loader');
 const videoPlayer = document.getElementById('videoPlayer');
 const sampleVideo = document.getElementById('sampleVideo');
 const MAX_FILE_SIZE_MB = 8;
@@ -97,23 +96,61 @@ createMagicBtn.addEventListener('click', async (e) => {
     }
 });
 
-// Move the file upload logic to a separate function
+// Add these functions at the top of your script.js file
+function showProgress(progress) {
+    const popup = document.getElementById('progressPopup');
+    const circle = document.querySelector('.progress-ring__circle');
+    const progressText = document.getElementById('progressText');
+    
+    // Show popup if hidden
+    popup.classList.remove('hidden');
+    
+    // Update progress
+    const circumference = 126; // 2 * π * radius (20)
+    const offset = circumference - (progress / 100) * circumference;
+    circle.style.strokeDashoffset = offset;
+    progressText.textContent = `${Math.round(progress)}%`;
+}
+
+function hideProgress() {
+    const popup = document.getElementById('progressPopup');
+    popup.classList.add('hidden');
+}
+
+// Modify your handleFileUpload function
 async function handleFileUpload(file) {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('userName', 'Brainrot Anything!');
 
-    loader.style.display = 'block';
-    
     try {
+        // Show initial progress
+        showProgress(0);
+        
+        // Simulate progress while waiting for response
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress > 90) progress = 90;
+            showProgress(progress);
+        }, 1000);
+
         const response = await fetch('https://vibevision.ai/api/generate-video/brainrot', {
             method: 'POST',
             body: formData,
         });
 
+        clearInterval(progressInterval);
+        showProgress(100);
+        
         if (!response.ok) throw new Error('Failed to upload file');
 
         const data = await response.json();
+        
+        // Hide progress after a brief delay
+        setTimeout(() => {
+            hideProgress();
+        }, 1000);
 
         if (data.videoUrl) {
             document.getElementById('generatedVideoContainer').classList.remove('hidden');
@@ -146,30 +183,45 @@ async function handleFileUpload(file) {
             alert('No video URL returned from the server.');
         }
     } catch (error) {
+        hideProgress();
         alert('An error occurred: ' + error.message);
-    } finally {
-        loader.style.display = 'none';
     }
 }
 
-// Move the text submission logic to a separate function
+// Similarly modify handleTextSubmission to include progress
 async function handleTextSubmission(text) {
     const formData = new FormData();
     formData.append('text', text);
     formData.append('userName', 'Brainrot Anything!');
 
-    const textLoader = document.getElementById('textLoader');
-    textLoader.style.display = 'block';
-    
     try {
+        // Show initial progress
+        showProgress(0);
+        
+        // Simulate progress while waiting for response
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress > 90) progress = 90;
+            showProgress(progress);
+        }, 1000);
+
         const response = await fetch('https://vibevision.ai/api/generate-video/brainrot', {
             method: 'POST',
             body: formData,
         });
 
+        clearInterval(progressInterval);
+        showProgress(100);
+        
         if (!response.ok) throw new Error('Failed to process text');
 
         const data = await response.json();
+        
+        // Hide progress after a brief delay
+        setTimeout(() => {
+            hideProgress();
+        }, 1000);
 
         if (data.videoUrl) {
             document.getElementById('generatedVideoContainer').classList.remove('hidden');
@@ -202,9 +254,8 @@ async function handleTextSubmission(text) {
             alert('No video URL returned from the server.');
         }
     } catch (error) {
+        hideProgress();
         alert('An error occurred: ' + error.message);
-    } finally {
-        textLoader.style.display = 'none';
     }
 }
 
